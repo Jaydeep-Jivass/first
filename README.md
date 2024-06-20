@@ -1,75 +1,72 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
-
-# Getting Started
-
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
-## Step 1: Start the Metro Server
+## Project Overview
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+The WiFi Logger Mobile App is designed to connect to a specific Wi-Fi network (provided by an ESP8266 module), fetch logs from this network, and display them in real-time. The app will allow users to enter Wi-Fi credentials (SSID and password) and the IP address of the ESP8266 module. It will also show a list of recent SSIDs for quick selection.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## Technologies Used
+   - React Native: For building the mobile application.
+   - Axios: For making HTTP requests.
+   - react-native-wifi-reborn: For managing Wi-Fi connections (Android only).
+## App Features
+   - WiFi Connection: Connect to a specified Wi-Fi network using SSID and password.
+   - Fetch Logs: Fetch logs from the ESP8266 module using its IP address.
+   - Recent SSIDs: Display a list of recent SSIDs for quick selection.
 
-```bash
-# using npm
-npm start
+## Components
 
-# OR using Yarn
-yarn start
-```
+### 1. WiFiForm
+   - Props:
+      - **onSubmit:** Function to handle form submission.
+   - State:
 
-## Step 2: Start your Application
+      - **ssid:** String
+      - **password:** String
+      - **ipAddress:** String
+     
+   - Description:
+A form to input SSID, password, and IP address.
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+### 2. RecentSSIDs
+      
+   - Props:
 
-### For Android
+      - **ssids:** Array of SSID strings.
+      - **onSelect:** Function to handle SSID selection.
+     
+   - Description:
+Displays a list of recent SSIDs.
 
-```bash
-# using npm
-npm run android
+### 3. WiFiLogs
 
-# OR using Yarn
-yarn android
-```
+   - Props:
+       - **ssid:** String
+       - **password:** String
+       - **ipAddress:** String
+   - State:
+        - **logs:** Array of logs
+    
+   - Description:
+Fetches and displays logs from the ESP8266 module.
 
-### For iOS
+### Main App Component
+Integrates the above components and manages the state.
 
-```bash
-# using npm
-npm run ios
+## Testing Steps
+1. Set Up the ESP8266 Module:
+   - Ensure your ESP8266 module is configured to create a Wi-Fi network and serve logs over HTTP.
+2. Enter Wi-Fi Details:
+   - Open the app and press the "WiFi Logs" button.
+   - Enter the SSID, password, and IP address of the ESP8266 module in the form.
+3. Select Recent SSID:
+   - Alternatively, select an SSID from the list of recent SSIDs.
+4. Fetch Logs:
+   - The app will fetch logs from the ESP8266 module at the specified IP address and display them in real-time.
 
-# OR using Yarn
-yarn ios
-```
+## Troubleshooting
+If this is not giving any logs data then you can try using native-modules. There is also one more library named [react-native-wifi-reborn](https://www.npmjs.com/package/react-native-wifi-reborn).
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
+## Learn More
 To learn more about React Native, take a look at the following resources:
 
 - [React Native Website](https://reactnative.dev) - learn more about React Native.
